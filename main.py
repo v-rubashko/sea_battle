@@ -1,9 +1,12 @@
-from random import random
+from random import random, choices
+from time import sleep
 
 TOTAL_POINTS = 10
 SHIP_TYPES = {1: "Броненосец",
               2: "Торпедный катер",
               3: "Противокорабельная лодка"}
+SLEEP_TIME = 1
+
 
 def get_rules():
     print(f"Правила игры:\n"
@@ -31,7 +34,7 @@ def input_digit():
 
 class BattleShip:
     def __init__(self, name , ship_type, hp, damage, speed):
-        self._name = name
+        self.name = name
         self.ship_type = ship_type
         self.hp = hp
         self.damage = damage
@@ -53,6 +56,8 @@ class BattleShip:
     @hp.setter
     def hp(self, hp):
         self._hp = hp * 100
+        self.is_alive = True
+        self.damage_received = 0
 
     @property
     def damage(self):
@@ -60,7 +65,7 @@ class BattleShip:
 
     @damage.setter
     def damage(self, damage):
-        self._damage = damage * 15 if self.ship_type == 3 else damage * 10
+        self._damage = damage * 15 if self.ship_type == "Противокорабельная лодка" else damage * 10
 
     @property
     def speed(self):
@@ -68,10 +73,10 @@ class BattleShip:
 
     @speed.setter
     def speed(self, speed):
-        self._speed = speed * 2 if self.ship_type == 2 else speed
+        self._speed = speed * 2 if self.ship_type == "Торпедный катер" else speed
 
     def get_info(self):
-        print(f"{'Корабль':.<17}{self._name}\n"
+        print(f"{'Корабль':.<17}{self.name}\n"
               f"{'Тип':.<17}{self._ship_type}\n"
               f"{'Прочность':.<17}{self._hp}\n"
               f"{'Средний урон':.<17}{self._damage}\n"
@@ -82,8 +87,16 @@ class BattleShip:
         return round(self._damage * round(k, 1) * 0.1)
 
     def take_damage(self, damage):
-        print(self._ship_type)
-        self._hp -= round(damage / 2) if self._ship_type == "Броненосец" else damage
+        if self.dodge_damage():
+            print(f"Корабль '{self.name}' уворачивается")
+            self.damage_received = 0
+        else:
+            self.damage_received = round(damage / 2) if self._ship_type == "Броненосец" else damage
+            self._hp -= self.damage_received
+            self.is_alive = True if self._hp > 0 else False
+
+    def dodge_damage(self):
+        return (choices((True, False), weights=(self.speed * 0.05, 1 - self.speed * 0.05))[0])
 
 
 
@@ -112,21 +125,56 @@ def ship_input():
     print(speed)
     return name, ship_type, hp, damage, speed
 
-# print("<---BATTLE SHIP, ver. 1.0--->")
-# start = input("Нажмите Enter, чтобы начать игру (для получения правил игры введите info)\n")
-# if start == "info":
-#     get_rules()
-#     input("Нажмите Enter, чтобы начать игру")
-#
-# print(f"{"":-<32}")
-# print(f"Введите данные первого корабля")
+def battle(battle_ship_1, battle_ship_2):
+    while True:
+        damage = battle_ship_1.deal_damage()
+        print(f"Корабль '{battle_ship_1.name}' атакует на {damage} урона")
+        sleep(SLEEP_TIME)
+        battle_ship_2.take_damage(damage)
+        if not battle_ship_2.is_alive:
+            print(f"Корабль '{battle_ship_2.name}' получает {battle_ship_2.damage_received} урона")
+            print(f"Корабль '{battle_ship_2.name}' уничтожен!\n"
+                  f"Корабль '{battle_ship_1.name}' побеждает в бою!")
+            break
+        print(f"Корабль '{battle_ship_2.name}' получает {battle_ship_2.damage_received} урона\n"
+              f"Оставшиеся очки прочности коробля '{battle_ship_2.name}' = {battle_ship_2.hp}")
+        print(f"{"":-<32}")
+        sleep(SLEEP_TIME * 2)
+        damage = battle_ship_2.deal_damage()
+        print(f"Корабль '{battle_ship_2.name}' атакует на {damage} урона")
+        sleep(SLEEP_TIME)
+        battle_ship_1.take_damage(damage)
+        if not battle_ship_1.is_alive:
+            print(f"Корабль '{battle_ship_1.name}' получает {battle_ship_1.damage_received} урона\n"
+                  f"Корабль '{battle_ship_1.name}' уничтожен!\n"
+                  f"Корабль '{battle_ship_2.name}' побеждает в бою!")
+            break
+        print(f"Корабль '{battle_ship_1.name}' получает {battle_ship_1.damage_received} урона\n"
+              f"Оставшиеся очки прочности коробля '{battle_ship_1.name}' = {battle_ship_1.hp}")
+        print(f"{"":-<32}")
+        sleep(SLEEP_TIME * 2)
+
+
+print("<---BATTLE SHIP, ver. 1.0--->")
+start = input("Нажмите Enter, чтобы начать игру (для получения правил игры введите info)\n")
+
+if start == "info":
+    get_rules()
+    input("Нажмите Enter, чтобы начать игру")
+print(f"{"":-<32}")
+print(f"Введите данные первого корабля")
 input_1 = ship_input()
-battle_ship_1 = BattleShip(input_1[0], input_1[1], input_1[2], input_1[3], input_1[4])
-battle_ship_1.get_info()
-# print(f"{"":-<32}")
-# input("нажмите Enter, чтобы продолжить")
-# print(f"{"":-<32}")
-# print("Введите данные второго корабля")
-# input_2 = ship_input()
-# battle_ship_2 = BattleShip(input_2[0], input_2[1], input_2[2], input_2[3], input_2[4])
-# battle_ship_2.get_info()
+ship_1 = BattleShip(input_1[0], input_1[1], input_1[2], input_1[3], input_1[4])
+ship_1.get_info()
+print(f"{"":-<32}")
+input("нажмите Enter, чтобы продолжить")
+print(f"{"":-<32}")
+print("Введите данные второго корабля")
+input_2 = ship_input()
+ship_2 = BattleShip(input_2[0], input_2[1], input_2[2], input_2[3], input_2[4])
+ship_2.get_info()
+print(f"{"":-<32}")
+print("Бой начался!")
+print(f"{"":-<32}")
+sleep(SLEEP_TIME * 2)
+battle(ship_1, ship_2)
