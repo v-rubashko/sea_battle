@@ -99,7 +99,6 @@ class BattleShip:
         return (choices((True, False), weights=(self.speed * 0.05, 1 - self.speed * 0.05))[0])
 
 
-
 def ship_input():
     name = input("Название корабля:\n")
     print(f"Выберите тип коробля от 1 до {len(SHIP_TYPES)}, где:")
@@ -124,6 +123,27 @@ def ship_input():
     speed = TOTAL_POINTS - hp - damage
     print(speed)
     return name, ship_type, hp, damage, speed
+
+
+def start_game():
+    print(f"{"":-<32}")
+    print(f"Введите данные первого корабля")
+    input_1 = ship_input()
+    ship_1 = BattleShip(input_1[0], input_1[1], input_1[2], input_1[3], input_1[4])
+    ship_1.get_info()
+    print(f"{"":-<32}")
+    input("нажмите Enter, чтобы продолжить")
+    print(f"{"":-<32}")
+    print("Введите данные второго корабля")
+    input_2 = ship_input()
+    ship_2 = BattleShip(input_2[0], input_2[1], input_2[2], input_2[3], input_2[4])
+    ship_2.get_info()
+    print(f"{"":-<32}")
+    print("Бой начался!")
+    print(f"{"":-<32}")
+    sleep(SLEEP_TIME * 2)
+    return ship_1, ship_2
+
 
 def battle(battle_ship_1, battle_ship_2):
     while True:
@@ -153,28 +173,11 @@ def battle(battle_ship_1, battle_ship_2):
               f"Оставшиеся очки прочности коробля '{battle_ship_1.name}' = {battle_ship_1.hp}")
         print(f"{"":-<32}")
         sleep(SLEEP_TIME * 2)
-
-
 print("<---BATTLE SHIP, ver. 1.0--->")
-start = input("Нажмите Enter, чтобы начать игру (для получения правил игры введите info)\n")
 
+start = input("Нажмите Enter, чтобы начать игру (для получения правил игры введите info)\n")
 if start == "info":
     get_rules()
     input("Нажмите Enter, чтобы начать игру")
-print(f"{"":-<32}")
-print(f"Введите данные первого корабля")
-input_1 = ship_input()
-ship_1 = BattleShip(input_1[0], input_1[1], input_1[2], input_1[3], input_1[4])
-ship_1.get_info()
-print(f"{"":-<32}")
-input("нажмите Enter, чтобы продолжить")
-print(f"{"":-<32}")
-print("Введите данные второго корабля")
-input_2 = ship_input()
-ship_2 = BattleShip(input_2[0], input_2[1], input_2[2], input_2[3], input_2[4])
-ship_2.get_info()
-print(f"{"":-<32}")
-print("Бой начался!")
-print(f"{"":-<32}")
-sleep(SLEEP_TIME * 2)
-battle(ship_1, ship_2)
+player1 , player2 = start_game()
+battle(player1, player2)
