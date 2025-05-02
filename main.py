@@ -9,6 +9,18 @@ SHIP_TYPES = {
     2: 'Торпедный катер',
     3: 'Противокорабельная лодка'
 }
+LOCATION_TYPES = {
+    1: ['Море', 'скорость кораблей не изменяется'],
+    2: ['Бухта', 'скорость кораблей снижается в 2 раза'],
+}
+WEATHER_TYPES = {
+    1: ['Штиль', 'количество HP кораблей не изменяется'],
+    2: ['Шторм', 'HP кораблей снижается в 2 раза'],
+}
+TIME_OF_DAY = {
+    1: ['День', 'урон кораблей не изменяется'],
+    2: ['Ночь', 'урон кораблей увеличивается в 2 раза'],
+}
 SLEEP_TIME = 1  # Задержка выведения лога битвы
 SEPARATOR = f'{'':-<32}'  # Разделитель в логе итераций боя
 
@@ -16,18 +28,18 @@ SEPARATOR = f'{'':-<32}'  # Разделитель в логе итераций 
 class BattleShip:
     def __init__(self, name, ship_type, hp, damage, speed):
         self.name = name
-        self.ship_type = ship_type
+        self.shipType = ship_type
         self.hp = hp
         self.damage = damage
         self.speed = speed
 
     @property
-    def ship_type(self):
-        return self._ship_type
+    def shipType(self):
+        return self._shipType
 
-    @ship_type.setter
-    def ship_type(self, ship_type):
-        self._ship_type = SHIP_TYPES[ship_type]
+    @shipType.setter
+    def shipType(self, ship_type):
+        self._shipType = SHIP_TYPES[ship_type]
 
     @property
     def hp(self):
@@ -45,7 +57,7 @@ class BattleShip:
 
     @damage.setter
     def damage(self, damage):
-        self._damage = damage * 15 if self.ship_type == 'Противокорабельная лодка' else damage * 10  # Модификатор урона для типа коробля "Противокорабельная лодка"
+        self._damage = damage * 15 if self.shipType == 'Противокорабельная лодка' else damage * 10  # Модификатор урона для типа коробля "Противокорабельная лодка"
 
     @property
     def speed(self):
@@ -53,33 +65,36 @@ class BattleShip:
 
     @speed.setter
     def speed(self, speed):
-        self._speed = speed * 2 if self.ship_type == 'Торпедный катер' else speed  # Модификатор скорости для типа коробля "Торпедный катер"
+        if not hasattr(self, '_speed'):
+            self._speed = speed * 2 if self.shipType == 'Торпедный катер' else speed  # Модификатор скорости для типа коробля "Торпедный катер"
+        else:
+            self._speed = speed
 
-    def get_info(self):
+    def getInfo(self):
         print(f'{'Корабль':.<17}{self.name}\n'
-              f'{'Тип':.<17}{self._ship_type}\n'
-              f'{'Прочность':.<17}{self._hp}\n'
-              f'{'Средний урон':.<17}{self._damage}\n'
-              f'{'Скорость':.<17}{self._speed}')
+              f'{'Тип':.<17}{self.shipType}\n'
+              f'{'Прочность':.<17}{self.hp}\n'
+              f'{'Средний урон':.<17}{self.damage}\n'
+              f'{'Скорость':.<17}{self.speed}')
 
-    def deal_damage(self):
+    def dealDamage(self):
         k = round(uniform(0.9, 1.1), 2)  # Коэффициент для создания ВБР при стрельбе +/- 10%
         return round(self._damage * k)
 
-    def take_damage(self, damage):
-        if self.dodge_damage():
-            print(f'Корабль "{self.name}" уворачивается')
+    def takeDamage(self, damage):
+        if self.dodgeDamage():
+            print(f"Корабль '{self.name}' уворачивается")
             self.damage_received = 0
         else:
-            self.damage_received = round(damage / 2) if self._ship_type == 'Броненосец' else damage  # Модификатор получения урона для типа коробля "Броненосец"
+            self.damage_received = round(damage / 2) if self._shipType == 'Броненосец' else damage  # Модификатор получения урона для типа коробля "Броненосец"
             self._hp -= self.damage_received
             self.is_alive = True if self._hp > 0 else False
 
-    def dodge_damage(self):
+    def dodgeDamage(self):
         return choices((True, False), weights=(self.speed * DODGE_CF, 1 - self.speed * DODGE_CF))[0]
 
 
-def get_rules():
+def getRules():
     print(f'Правила игры:\n'
           f'Игроку необходимо указать название, тип и ТТХ 2-х короблей, которые будут участвовать в бою.\n'
           f'Суммарно для всех ТТХ (хп, урон, скорость) доступно {TOTAL_POINTS} очков (значение не может быть = 0)\n'
@@ -95,7 +110,7 @@ def get_rules():
           f'А знаете, где ещё есть танки, авиация и корабли? Конечно же, в...')
 
 
-def input_digit():
+def inputDigit():
     while True:
         s = input()
         try:
@@ -104,44 +119,75 @@ def input_digit():
             print('Введен неправильный тип. Ожидалось целое число.')
 
 
-def ship_property_input():
+def shipPropertyInput():
     name = input('Название корабля:\n')
     print(f'Выберите тип коробля от 1 до {len(SHIP_TYPES)}, где:')
     print(*[f'{key} - {value}' for key, value in SHIP_TYPES.items()], sep='\n')
-    ship_type = input_digit()
+    ship_type = inputDigit()
     while ship_type not in SHIP_TYPES:
-        print('Указанный тип отсутствует, повторите ввод')
+        print('Указанный тип отсутствует, повторите ввод:')
         print(*[f'{key} - {value}' for key, value in SHIP_TYPES.items()], sep='\n')
-        ship_type = input_digit()
+        ship_type = inputDigit()
     print(f'Укажите ТТХ корабля (доступно {TOTAL_POINTS} очков)')
     print(f'Очки прочности: число от 1 до {TOTAL_POINTS - 2} (итоговое ХП = очки прочности х 10):')
-    hp = input_digit()
+    hp = inputDigit()
     while hp < 1 or hp > TOTAL_POINTS - 2:
         print(f'Указаное количество очков прочности не попадает в диапазон от 1 до {TOTAL_POINTS - 2}')
-        hp = input_digit()
+        hp = inputDigit()
     print(f'Очки урона: число от 1 до {TOTAL_POINTS - hp - 1}')
-    damage = input_digit()
+    damage = inputDigit()
     while damage < 1 or damage > TOTAL_POINTS - hp - 1:
         print(f'Указаное количество очков урона не попадает в диапазон от 1 до {TOTAL_POINTS - hp - 1}')
-        damage = input_digit()
+        damage = inputDigit()
     print('Очки скорости:')
     speed = TOTAL_POINTS - hp - damage
     print(speed)
     return BattleShip(name, ship_type, hp, damage, speed)
 
 
-def start_game():
-    def ship_input(ship_index):
+def startGame():
+    def shipInput(ship_index):
         print(SEPARATOR)
-        print(f'Введите данные {ship_index} корабля')
-        ship = ship_property_input()
-        ship.get_info()
+        print(f'Введите данные {ship_index} корабля:')
+        ship = shipPropertyInput()
+        ship.getInfo()
         print(SEPARATOR)
         return ship
 
-    ship_1 = ship_input('первого')
+    def environmentInput(env_name, env_types):
+        print(f'Выберите тип {env_name} от 1 до {len(env_types)}, где:')
+        print(*[f'{key} - {value[0]} ({value[1]})' for key, value in env_types.items()], sep='\n')
+        env_type = inputDigit()
+        while env_type not in env_types:
+            print('Указанный тип отсутствует, повторите ввод:')
+            print(*[f'{key} - {value[0]} ({value[1]})' for key, value in env_types.items()], sep='\n')
+            env_type = inputDigit()
+        return env_type
+
+    ship_1 = shipInput('первого')
     input('нажмите Enter, чтобы продолжить')
-    ship_2 = ship_input('второго')
+    ship_2 = shipInput('второго')
+    input('нажмите Enter, чтобы продолжить')
+    print(SEPARATOR)
+    battle_location = environmentInput('боевой локации', LOCATION_TYPES)
+    print(SEPARATOR)
+    battle_weather = environmentInput('погоды', WEATHER_TYPES)
+    print(SEPARATOR)
+    battle_time = environmentInput('времени суток', TIME_OF_DAY)
+    print(SEPARATOR)
+    print(f'Боевая локация - {LOCATION_TYPES[battle_location][0]}')
+    print(f'Погода - {WEATHER_TYPES[battle_weather][0]}')
+    print(f'Время суток - {TIME_OF_DAY[battle_time][0]}')
+    print(SEPARATOR)
+    if LOCATION_TYPES[battle_location][0] == 'Бухта':
+        ship_1.speed = ship_1.speed // 2
+        ship_2.speed = ship_2.speed // 2
+    ship_1.getInfo()
+    print(SEPARATOR)
+    ship_2.getInfo()
+    print(SEPARATOR)
+    input('нажмите Enter, чтобы продолжить')
+    print(SEPARATOR)
     print('Бой начался!')
     print(SEPARATOR)
     sleep(SLEEP_TIME * 2)
@@ -149,18 +195,18 @@ def start_game():
 
 
 def battle(battle_ship_1, battle_ship_2):
-    def battle_iteration(ship_1, ship_2):
-        damage = ship_1.deal_damage()
-        print(f'Корабль "{ship_1.name}" атакует на {damage} урона')
+    def battleIteration(ship_1, ship_2):
+        damage = ship_1.dealDamage()
+        print(f"Корабль '{ship_1.name}' атакует на {damage} урона")
         sleep(SLEEP_TIME)
-        ship_2.take_damage(damage)
+        ship_2.takeDamage(damage)
         if not ship_2.is_alive:
-            print(f'Корабль "{ship_2.name}" получает {ship_2.damage_received} урона\n'
-                  f'Корабль "{ship_2.name}" уничтожен!\n'
-                  f'Корабль "{ship_1.name}" побеждает в бою!')
+            print(f"Корабль '{ship_2.name}' получает {ship_2.damage_received} урона\n"
+                  f"Корабль '{ship_2.name}' уничтожен!\n"
+                  f"Корабль '{ship_1.name}' побеждает в бою!")
             return False
-        print(f'Корабль "{ship_2.name}" получает {ship_2.damage_received} урона\n'
-              f'Оставшиеся очки прочности коробля "{ship_2.name}" = {ship_2.hp}')
+        print(f"Корабль '{ship_2.name}' получает {ship_2.damage_received} урона\n"
+              f"Оставшиеся очки прочности коробля '{ship_2.name}' = {ship_2.hp}")
         print(SEPARATOR)
         sleep(SLEEP_TIME * 2)
         return True
@@ -168,14 +214,14 @@ def battle(battle_ship_1, battle_ship_2):
     attack_order = [battle_ship_1, battle_ship_2]
     alive_flag = True
     while alive_flag:
-        alive_flag = battle_iteration(*attack_order)
+        alive_flag = battleIteration(*attack_order)
         attack_order.reverse()
 
 
-print('<---BATTLE SHIP, ver. 1.1--->')
+print('<---BATTLE SHIP, ver. 1.2--->')
 start = input('Нажмите Enter, чтобы начать игру (для получения правил игры введите info)\n')
 if start == 'info':
-    get_rules()
+    getRules()
     input('Нажмите Enter, чтобы начать игру')
-player1, player2 = start_game()
+player1, player2 = startGame()
 battle(player1, player2)
