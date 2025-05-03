@@ -22,73 +22,46 @@ TIME_OF_DAY = {
     2: ['Ночь', 'урон кораблей увеличивается в 2 раза'],
 }
 SLEEP_TIME = 1  # Задержка выведения лога битвы
-SEPARATOR = f'{'':-<32}'  # Разделитель в логе итераций боя
+SEPARATOR = f"{'':-<32}"  # Разделитель в логе итераций боя
 
 
 class BattleShip:
     def __init__(self, name, ship_type, hp, damage, speed):
         self.name = name
-        self.shipType = ship_type
-        self.hp = hp
-        self.damage = damage
-        self.speed = speed
+        self.shipType = SHIP_TYPES[ship_type]
+        self.hp = hp * 100  # Геймпплейное увеличение очков прочности х100
+        self.damage = damage * 15 if self.shipType == 'Противокорабельная лодка' else damage * 10  # Модификатор урона для типа коробля "Противокорабельная лодка"
+        self.speed = float(speed * 2) if self.shipType == 'Торпедный катер' else float(speed)
+        self._is_alive = True
+        self._damage_received = 0  # Начальное значение полученного урона
 
     @property
-    def shipType(self):
-        return self._shipType
-
-    @shipType.setter
-    def shipType(self, ship_type):
-        self._shipType = SHIP_TYPES[ship_type]
+    def is_alive(self):
+        return self._is_alive
 
     @property
-    def hp(self):
-        return self._hp
-
-    @hp.setter
-    def hp(self, hp):
-        self._hp = hp * 100  # Геймпплейное увеличение очков прочности х100
-        self.is_alive = True
-        self.damage_received = 0  # Начальное значение полученного урона
-
-    @property
-    def damage(self):
-        return self._damage
-
-    @damage.setter
-    def damage(self, damage):
-        self._damage = damage * 15 if self.shipType == 'Противокорабельная лодка' else damage * 10  # Модификатор урона для типа коробля "Противокорабельная лодка"
-
-    @property
-    def speed(self):
-        return self._speed
-
-    @speed.setter
-    def speed(self, speed):
-        if not hasattr(self, '_speed'):
-            self._speed = speed * 2 if self.shipType == 'Торпедный катер' else speed  # Модификатор скорости для типа коробля "Торпедный катер"
-        else:
-            self._speed = speed
+    def damage_received(self):
+        return self._damage_received
 
     def getInfo(self):
-        print(f'{'Корабль':.<17}{self.name}\n'
-              f'{'Тип':.<17}{self.shipType}\n'
-              f'{'Прочность':.<17}{self.hp}\n'
-              f'{'Средний урон':.<17}{self.damage}\n'
-              f'{'Скорость':.<17}{self.speed}')
+        print(f"{'Корабль':.<17}{self.name}\n"
+              f"{'Тип':.<17}{self.shipType}\n"
+              f"{'Прочность':.<17}{self.hp}\n"
+              f"{'Средний урон':.<17}{self.damage}\n"
+              f"{'Скорость':.<17}{self.speed}")
 
     def dealDamage(self):
         k = round(uniform(0.9, 1.1), 2)  # Коэффициент для создания ВБР при стрельбе +/- 10%
-        return round(self._damage * k)
+        return round(self.damage * k)
 
     def takeDamage(self, damage):
         if self.dodgeDamage():
             print(f"Корабль '{self.name}' уворачивается")
-            self.damage_received = 0
+            self._damage_received = 0
         else:
-            self.damage_received = round(damage / 2) if self._shipType == 'Броненосец' else damage  # Модификатор получения урона для типа коробля "Броненосец"
-            self._hp -= self.damage_received
-            self.is_alive = True if self._hp > 0 else False
+            self._damage_received = round(damage / 2) if self.shipType == 'Броненосец' else damage  # Модификатор получения урона для типа коробля "Броненосец"
+            self.hp -= self._damage_received
+            self._is_alive = True if self.hp > 0 else False
 
     def dodgeDamage(self):
         return choices((True, False), weights=(self.speed * DODGE_CF, 1 - self.speed * DODGE_CF))[0]
@@ -175,13 +148,19 @@ def startGame():
     print(SEPARATOR)
     battle_time = environmentInput('времени суток', TIME_OF_DAY)
     print(SEPARATOR)
+    if LOCATION_TYPES[battle_location][0] == 'Бухта':
+        ship_1.speed = ship_1.speed / 2
+        ship_2.speed = ship_2.speed / 2
+    if WEATHER_TYPES[battle_weather][0] == 'Шторм':
+        ship_1.hp = ship_1.hp // 2
+        ship_2.hp = ship_2.hp // 2
+    if TIME_OF_DAY[battle_time][0] == 'Ночь':
+        ship_1.damage = ship_1.damage * 2
+        ship_2.damage = ship_2.damage * 2
     print(f'Боевая локация - {LOCATION_TYPES[battle_location][0]}')
     print(f'Погода - {WEATHER_TYPES[battle_weather][0]}')
     print(f'Время суток - {TIME_OF_DAY[battle_time][0]}')
     print(SEPARATOR)
-    if LOCATION_TYPES[battle_location][0] == 'Бухта':
-        ship_1.speed = ship_1.speed // 2
-        ship_2.speed = ship_2.speed // 2
     ship_1.getInfo()
     print(SEPARATOR)
     ship_2.getInfo()
