@@ -32,16 +32,16 @@ class BattleShip:
         self.hp = hp * 100  # Геймпплейное увеличение очков прочности х100
         self.damage = damage * 15 if self.shipType == 'Противокорабельная лодка' else damage * 10  # Модификатор урона для типа коробля "Противокорабельная лодка"
         self.speed = float(speed * 2) if self.shipType == 'Торпедный катер' else float(speed)
-        self._is_alive = True
-        self._damage_received = 0  # Начальное значение полученного урона
+        self._isAlive = True
+        self._damageReceived = 0  # Начальное значение полученного урона
 
     @property
-    def is_alive(self):
-        return self._is_alive
+    def isAlive(self):
+        return self._isAlive
 
     @property
-    def damage_received(self):
-        return self._damage_received
+    def damageReceived(self):
+        return self._damageReceived
 
     def getInfo(self):
         print(f"{'Корабль':.<17}{self.name}\n"
@@ -57,11 +57,11 @@ class BattleShip:
     def takeDamage(self, damage):
         if self.dodgeDamage():
             print(f"Корабль '{self.name}' уворачивается")
-            self._damage_received = 0
+            self._damageReceived = 0
         else:
-            self._damage_received = round(damage / 2) if self.shipType == 'Броненосец' else damage  # Модификатор получения урона для типа коробля "Броненосец"
-            self.hp -= self._damage_received
-            self._is_alive = True if self.hp > 0 else False
+            self._damageReceived = round(damage / 2) if self.shipType == 'Броненосец' else damage  # Модификатор получения урона для типа коробля "Броненосец"
+            self.hp -= self._damageReceived
+            self._isAlive = True if self.hp > 0 else False
 
     def dodgeDamage(self):
         return choices((True, False), weights=(self.speed * DODGE_CF, 1 - self.speed * DODGE_CF))[0]
@@ -179,12 +179,12 @@ def battle(battle_ship_1, battle_ship_2):
         print(f"Корабль '{ship_1.name}' атакует на {damage} урона")
         sleep(SLEEP_TIME)
         ship_2.takeDamage(damage)
-        if not ship_2.is_alive:
-            print(f"Корабль '{ship_2.name}' получает {ship_2.damage_received} урона\n"
+        if not ship_2.isAlive:
+            print(f"Корабль '{ship_2.name}' получает {ship_2.damageReceived} урона\n"
                   f"Корабль '{ship_2.name}' уничтожен!\n"
                   f"Корабль '{ship_1.name}' побеждает в бою!")
             return False
-        print(f"Корабль '{ship_2.name}' получает {ship_2.damage_received} урона\n"
+        print(f"Корабль '{ship_2.name}' получает {ship_2.damageReceived} урона\n"
               f"Оставшиеся очки прочности коробля '{ship_2.name}' = {ship_2.hp}")
         print(SEPARATOR)
         sleep(SLEEP_TIME * 2)
