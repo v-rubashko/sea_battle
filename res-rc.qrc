@@ -1,0 +1,32 @@
+<RCC>
+  <qresource prefix="backgrond">
+    <file>game_images/mk_2.jpg</file>
+    <file>game_images/mk.jpg</file>
+  </qresource>
+  <qresource prefix="icons">
+    <file>icons/edit_note_b.svg</file>
+    <file>icons/edit_note_w.svg</file>
+    <file>icons/favorite_b.svg</file>
+    <file>icons/favorite_w.svg</file>
+    <file>icons/flag_b.svg</file>
+    <file>icons/flag_w.svg</file>
+    <file>icons/keyboard_double_arrow_right_b.svg</file>
+    <file>icons/keyboard_double_arrow_right_w.svg</file>
+    <file>icons/local_police_b.svg</file>
+    <file>icons/local_police_w.svg</file>
+    <file>icons/menu_b.svg</file>
+    <file>icons/menu_w.svg</file>
+    <file>icons/partly_cloudy_day_b.svg</file>
+    <file>icons/partly_cloudy_day_w.svg</file>
+    <file>icons/routine_b.svg</file>
+    <file>icons/routine_w.svg</file>
+    <file>icons/rule_b.svg</file>
+    <file>icons/rule_w.svg</file>
+    <file>icons/sailing_b.svg</file>
+    <file>icons/sailing_w.svg</file>
+    <file>icons/swords_b.svg</file>
+    <file>icons/swords_w.svg</file>
+    <file>icons/water_b.svg</file>
+    <file>icons/water_w.svg</file>
+  </qresource>
+</RCC>

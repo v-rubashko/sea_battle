@@ -1,0 +1,1301 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1136</width>
+    <height>395</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>SeaBattle</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">border-image: url(:/backgrond/game_images/mk_2.jpg);
+font-family: Noto Sans SC;</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <layout class="QHBoxLayout" name="horizontalLayout_16">
+    <item>
+     <widget class="QFrame" name="ship_1_info_frame">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="minimumSize">
+       <size>
+        <width>375</width>
+        <height>0</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>375</width>
+        <height>16777215</height>
+       </size>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: rgba(255, 255, 255, 30);
+border-image: qlineargradient(spread:pad, x1:1, y1:1, x2:0, y2:0, stop:0 rgba(81, 0, 135, 255), stop:0.427447 rgba(41, 61, 132, 235), stop:1 rgba(155, 79, 165, 255));
+border: 1px solid rgba(255, 255, 255, 0);
+border-radius: 7px</string>
+      </property>
+      <layout class="QVBoxLayout" name="verticalLayout">
+       <property name="spacing">
+        <number>0</number>
+       </property>
+       <property name="leftMargin">
+        <number>12</number>
+       </property>
+       <property name="topMargin">
+        <number>12</number>
+       </property>
+       <property name="rightMargin">
+        <number>12</number>
+       </property>
+       <property name="bottomMargin">
+        <number>12</number>
+       </property>
+       <item>
+        <widget class="QLabel" name="label">
+         <property name="styleSheet">
+          <string notr="true">color: rgb(0, 170, 0);
+font-weight: bold;
+font-size: 20pt;
+background-color: none;
+border: none;</string>
+         </property>
+         <property name="text">
+          <string>КОРАБЛЬ 1</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QProgressBar" name="progressBar">
+         <property name="value">
+          <number>24</number>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <spacer name="verticalSpacer_4">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeType">
+          <enum>QSizePolicy::Fixed</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>20</width>
+           <height>40</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item>
+        <layout class="QHBoxLayout" name="horizontalLayout">
+         <property name="spacing">
+          <number>0</number>
+         </property>
+         <item>
+          <widget class="QLabel" name="label_2">
+           <property name="maximumSize">
+            <size>
+             <width>24</width>
+             <height>16777215</height>
+            </size>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">background-color: none;
+border: none;
+padding-top: 10px;</string>
+           </property>
+           <property name="text">
+            <string/>
+           </property>
+           <property name="pixmap">
+            <pixmap resource="res-rc.qrc">:/icons/icons/flag_w.svg</pixmap>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLabel" name="label_3">
+           <property name="styleSheet">
+            <string notr="true">color: rgb(255, 255, 255);
+font-size: 15pt;
+background-color: none;
+border: none;
+font-weight: bold;
+padding-top: 10px;</string>
+           </property>
+           <property name="text">
+            <string>Название корабля:</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLabel" name="label_4">
+           <property name="styleSheet">
+            <string notr="true">color: rgb(255, 255, 255);
+font-size: 15pt;
+background-color: none;
+border: none;
+padding-top: 10px;</string>
+           </property>
+           <property name="text">
+            <string>name_1</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <layout class="QHBoxLayout" name="horizontalLayout_2">
+         <property name="spacing">
+          <number>0</number>
+         </property>
+         <item>
+          <widget class="QLabel" name="label_5">
+           <property name="maximumSize">
+            <size>
+             <width>24</width>
+             <height>16777215</height>
+            </size>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">background-color: none;
+border: none;
+padding-top: 10px;</string>
+           </property>
+           <property name="text">
+            <string/>
+           </property>
+           <property name="pixmap">
+            <pixmap resource="res-rc.qrc">:/icons/icons/sailing_w.svg</pixmap>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLabel" name="label_6">
+           <property name="styleSheet">
+            <string notr="true">color: rgb(255, 255, 255);
+font-size: 15pt;
+background-color: none;
+border: none;
+font-weight: bold;
+padding-top: 10px;</string>
+           </property>
+           <property name="text">
+            <string>Тип корабля:</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLabel" name="label_7">
+           <property name="styleSheet">
+            <string notr="true">color: rgb(255, 255, 255);
+font-size: 15pt;
+background-color: none;
+border: none;
+padding-top: 10px;</string>
+           </property>
+           <property name="text">
+            <string>shipType_1</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <layout class="QHBoxLayout" name="horizontalLayout_3">
+         <property name="spacing">
+          <number>0</number>
+         </property>
+         <item>
+          <widget class="QLabel" name="label_8">
+           <property name="maximumSize">
+            <size>
+             <width>24</width>
+             <height>16777215</height>
+            </size>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">background-color: none;
+border: none;
+padding-top: 10px;</string>
+           </property>
+           <property name="text">
+            <string/>
+           </property>
+           <property name="pixmap">
+            <pixmap resource="res-rc.qrc">:/icons/icons/favorite_w.svg</pixmap>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLabel" name="label_9">
+           <property name="styleSheet">
+            <string notr="true">color: rgb(255, 255, 255);
+font-size: 15pt;
+background-color: none;
+border: none;
+font-weight: bold;
+padding-top: 10px;</string>
+           </property>
+           <property name="text">
+            <string>ХП корабля:</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLabel" name="label_10">
+           <property name="styleSheet">
+            <string notr="true">color: rgb(255, 255, 255);
+font-size: 15pt;
+background-color: none;
+border: none;
+padding-top: 10px;</string>
+           </property>
+           <property name="text">
+            <string>hp_1</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <layout class="QHBoxLayout" name="horizontalLayout_4">
+         <property name="spacing">
+          <number>0</number>
+         </property>
+         <item>
+          <widget class="QLabel" name="label_11">
+           <property name="maximumSize">
+            <size>
+             <width>24</width>
+             <height>16777215</height>
+            </size>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">background-color: none;
+border: none;
+padding-top: 10px;</string>
+           </property>
+           <property name="text">
+            <string/>
+           </property>
+           <property name="pixmap">
+            <pixmap resource="res-rc.qrc">:/icons/icons/local_police_w.svg</pixmap>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLabel" name="label_12">
+           <property name="styleSheet">
+            <string notr="true">color: rgb(255, 255, 255);
+font-size: 15pt;
+background-color: none;
+border: none;
+font-weight: bold;
+padding-top: 10px;</string>
+           </property>
+           <property name="text">
+            <string>Урон корабля:</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLabel" name="label_13">
+           <property name="styleSheet">
+            <string notr="true">color: rgb(255, 255, 255);
+font-size: 15pt;
+background-color: none;
+border: none;
+padding-top: 10px;</string>
+           </property>
+           <property name="text">
+            <string>damage_1</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <layout class="QHBoxLayout" name="horizontalLayout_5">
+         <property name="spacing">
+          <number>0</number>
+         </property>
+         <item>
+          <widget class="QLabel" name="label_14">
+           <property name="maximumSize">
+            <size>
+             <width>24</width>
+             <height>16777215</height>
+            </size>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">background-color: none;
+border: none;
+padding-top: 10px;</string>
+           </property>
+           <property name="text">
+            <string/>
+           </property>
+           <property name="pixmap">
+            <pixmap resource="res-rc.qrc">:/icons/icons/keyboard_double_arrow_right_w.svg</pixmap>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLabel" name="label_15">
+           <property name="styleSheet">
+            <string notr="true">color: rgb(255, 255, 255);
+font-size: 15pt;
+background-color: none;
+border: none;
+font-weight: bold;
+padding-top: 10px;</string>
+           </property>
+           <property name="text">
+            <string>Скорость корабля:</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLabel" name="label_16">
+           <property name="styleSheet">
+            <string notr="true">color: rgb(255, 255, 255);
+font-size: 15pt;
+background-color: none;
+border: none;
+padding-top: 10px;</string>
+           </property>
+           <property name="text">
+            <string>speed_1</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <spacer name="verticalSpacer_3">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeType">
+          <enum>QSizePolicy::Fixed</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>20</width>
+           <height>40</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item alignment="Qt::AlignHCenter">
+        <widget class="QPushButton" name="pushButton">
+         <property name="font">
+          <font>
+           <family>Noto Sans SC</family>
+           <pointsize>15</pointsize>
+           <weight>75</weight>
+           <bold>true</bold>
+           <underline>false</underline>
+          </font>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QPushButton {
+color: white;
+background-color: rgba(0, 170, 0, 100);
+border: 1px solid rgba(0, 170, 0, 200);
+border-radius: 7px;
+width: 360px;
+height: 50px;
+}
+QPushButton:hover {
+background-color: rgba(0, 170, 0, 150);
+}
+QPushButton:pressed {
+background-color: rgba(0, 170, 0, 200);
+}</string>
+         </property>
+         <property name="text">
+          <string>Ввести данные корабля 1</string>
+         </property>
+         <property name="icon">
+          <iconset resource="res-rc.qrc">
+           <normaloff>:/icons/icons/edit_note_w.svg</normaloff>:/icons/icons/edit_note_w.svg</iconset>
+         </property>
+         <property name="iconSize">
+          <size>
+           <width>24</width>
+           <height>24</height>
+          </size>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <spacer name="verticalSpacer_2">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>20</width>
+           <height>40</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+      </layout>
+     </widget>
+    </item>
+    <item>
+     <widget class="QFrame" name="midle_frame">
+      <property name="styleSheet">
+       <string notr="true">background-color: rgba(255, 255, 255, 30);
+border-image: qlineargradient(spread:pad, x1:1, y1:1, x2:0, y2:0, stop:0 rgba(81, 0, 135, 255), stop:0.427447 rgba(41, 61, 132, 235), stop:1 rgba(155, 79, 165, 255));
+border: 1px solid rgba(255, 255, 255, 0);
+border-radius: 7px</string>
+      </property>
+      <layout class="QVBoxLayout" name="verticalLayout_6">
+       <item alignment="Qt::AlignHCenter">
+        <widget class="QPushButton" name="pushButton_4">
+         <property name="enabled">
+          <bool>true</bool>
+         </property>
+         <property name="font">
+          <font>
+           <family>Noto Sans SC</family>
+           <pointsize>15</pointsize>
+           <weight>75</weight>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QPushButton {
+color: white;
+background-color: rgba(226, 118, 10, 100);
+border: 1px solid rgba(226, 118, 10, 200);
+border-radius: 7px;
+width: 360px;
+height: 50px;
+}
+QPushButton:hover {
+background-color: rgba(226, 118, 10, 150);
+}
+QPushButton:pressed {
+background-color: rgba(226, 118, 10, 200);
+}</string>
+         </property>
+         <property name="text">
+          <string>НАЧАТЬ БОЙ</string>
+         </property>
+         <property name="icon">
+          <iconset resource="res-rc.qrc">
+           <normaloff>:/icons/icons/swords_w.svg</normaloff>:/icons/icons/swords_w.svg</iconset>
+         </property>
+         <property name="iconSize">
+          <size>
+           <width>24</width>
+           <height>24</height>
+          </size>
+         </property>
+        </widget>
+       </item>
+       <item alignment="Qt::AlignHCenter">
+        <widget class="QFrame" name="env_frame">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="minimumSize">
+          <size>
+           <width>360</width>
+           <height>0</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>360</width>
+           <height>16777215</height>
+          </size>
+         </property>
+         <property name="styleSheet">
+          <string notr="true"/>
+         </property>
+         <layout class="QHBoxLayout" name="horizontalLayout_14">
+          <item>
+           <layout class="QVBoxLayout" name="verticalLayout_3">
+            <item>
+             <layout class="QHBoxLayout" name="horizontalLayout_11">
+              <item>
+               <widget class="QLabel" name="label_36">
+                <property name="maximumSize">
+                 <size>
+                  <width>24</width>
+                  <height>16777215</height>
+                 </size>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true">background-color: none;
+border: none;
+padding-top: 10px;</string>
+                </property>
+                <property name="text">
+                 <string/>
+                </property>
+                <property name="pixmap">
+                 <pixmap resource="res-rc.qrc">:/icons/icons/water_w.svg</pixmap>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QLabel" name="label_33">
+                <property name="font">
+                 <font>
+                  <family>Noto Sans SC</family>
+                  <pointsize>12</pointsize>
+                  <weight>75</weight>
+                  <bold>true</bold>
+                 </font>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true">color: rgb(255, 255, 255);
+font-size: 12pt;
+background-color: none;
+border: none;
+font-weight: bold;
+padding-top: 10px;</string>
+                </property>
+                <property name="text">
+                 <string>Локация</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </item>
+            <item>
+             <widget class="QRadioButton" name="radioButton">
+              <property name="styleSheet">
+               <string notr="true">color: rgb(255, 255, 255);
+font-size: 12pt;
+background-color: none;
+border: none;</string>
+              </property>
+              <property name="text">
+               <string>Море</string>
+              </property>
+              <property name="checked">
+               <bool>true</bool>
+              </property>
+              <attribute name="buttonGroup">
+               <string notr="true">buttonGroup_location</string>
+              </attribute>
+             </widget>
+            </item>
+            <item>
+             <widget class="QRadioButton" name="radioButton_2">
+              <property name="styleSheet">
+               <string notr="true">color: rgb(255, 255, 255);
+font-size: 12pt;
+background-color: none;
+border: none;</string>
+              </property>
+              <property name="text">
+               <string>Бухта</string>
+              </property>
+              <attribute name="buttonGroup">
+               <string notr="true">buttonGroup_location</string>
+              </attribute>
+             </widget>
+            </item>
+           </layout>
+          </item>
+          <item>
+           <layout class="QVBoxLayout" name="verticalLayout_4">
+            <item>
+             <layout class="QHBoxLayout" name="horizontalLayout_12">
+              <item>
+               <widget class="QLabel" name="label_37">
+                <property name="maximumSize">
+                 <size>
+                  <width>24</width>
+                  <height>16777215</height>
+                 </size>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true">background-color: none;
+border: none;
+padding-top: 10px;</string>
+                </property>
+                <property name="text">
+                 <string/>
+                </property>
+                <property name="pixmap">
+                 <pixmap resource="res-rc.qrc">:/icons/icons/partly_cloudy_day_w.svg</pixmap>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QLabel" name="label_34">
+                <property name="styleSheet">
+                 <string notr="true">color: rgb(255, 255, 255);
+font-size: 12pt;
+background-color: none;
+border: none;
+font-weight: bold;
+padding-top: 10px;</string>
+                </property>
+                <property name="text">
+                 <string>Погода</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </item>
+            <item>
+             <widget class="QRadioButton" name="radioButton_3">
+              <property name="styleSheet">
+               <string notr="true">color: rgb(255, 255, 255);
+font-size: 12pt;
+background-color: none;
+border: none;</string>
+              </property>
+              <property name="text">
+               <string>Штиль</string>
+              </property>
+              <property name="checked">
+               <bool>true</bool>
+              </property>
+              <attribute name="buttonGroup">
+               <string notr="true">buttonGroup_weather</string>
+              </attribute>
+             </widget>
+            </item>
+            <item>
+             <widget class="QRadioButton" name="radioButton_4">
+              <property name="styleSheet">
+               <string notr="true">color: rgb(255, 255, 255);
+font-size: 12pt;
+background-color: none;
+border: none;</string>
+              </property>
+              <property name="text">
+               <string>Шторм</string>
+              </property>
+              <attribute name="buttonGroup">
+               <string notr="true">buttonGroup_weather</string>
+              </attribute>
+             </widget>
+            </item>
+           </layout>
+          </item>
+          <item>
+           <layout class="QVBoxLayout" name="verticalLayout_5">
+            <item>
+             <layout class="QHBoxLayout" name="horizontalLayout_13">
+              <item>
+               <widget class="QLabel" name="label_38">
+                <property name="maximumSize">
+                 <size>
+                  <width>24</width>
+                  <height>16777215</height>
+                 </size>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true">background-color: none;
+border: none;
+padding-top: 10px;</string>
+                </property>
+                <property name="text">
+                 <string/>
+                </property>
+                <property name="pixmap">
+                 <pixmap resource="res-rc.qrc">:/icons/icons/routine_w.svg</pixmap>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QLabel" name="label_35">
+                <property name="styleSheet">
+                 <string notr="true">color: rgb(255, 255, 255);
+font-size: 12pt;
+background-color: none;
+border: none;
+font-weight: bold;
+padding-top: 10px;</string>
+                </property>
+                <property name="text">
+                 <string>Время суток</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </item>
+            <item>
+             <widget class="QRadioButton" name="radioButton_5">
+              <property name="styleSheet">
+               <string notr="true">color: rgb(255, 255, 255);
+font-size: 12pt;
+background-color: none;
+border: none;</string>
+              </property>
+              <property name="text">
+               <string>День</string>
+              </property>
+              <property name="checked">
+               <bool>true</bool>
+              </property>
+              <attribute name="buttonGroup">
+               <string notr="true">buttonGroup_time_of_day</string>
+              </attribute>
+             </widget>
+            </item>
+            <item>
+             <widget class="QRadioButton" name="radioButton_6">
+              <property name="styleSheet">
+               <string notr="true">color: rgb(255, 255, 255);
+font-size: 12pt;
+background-color: none;
+border: none;</string>
+              </property>
+              <property name="text">
+               <string>Ночь</string>
+              </property>
+              <attribute name="buttonGroup">
+               <string notr="true">buttonGroup_time_of_day</string>
+              </attribute>
+             </widget>
+            </item>
+           </layout>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="label_40">
+         <property name="styleSheet">
+          <string notr="true">color: rgb(255, 255, 255);
+font-size: 15pt;
+background-color: none;
+border: none;
+font-weight: bold;
+padding-top: 10px;</string>
+         </property>
+         <property name="text">
+          <string>ХОД БИТВЫ:</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <layout class="QHBoxLayout" name="horizontalLayout_15">
+         <item>
+          <widget class="QTableView" name="tableView"/>
+         </item>
+        </layout>
+       </item>
+       <item alignment="Qt::AlignHCenter">
+        <widget class="QPushButton" name="pushButton_3">
+         <property name="font">
+          <font>
+           <family>Noto Sans SC</family>
+           <pointsize>10</pointsize>
+          </font>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QPushButton {
+color: white;
+background-color: rgba(196, 196, 196, 100);
+border: 1px solid rgba(196, 196, 196, 200);
+border-radius: 7px;
+width: 360px;
+height: 25px;
+}
+QPushButton:hover {
+background-color: rgba(196, 196, 196, 150);
+}
+QPushButton:pressed {
+background-color: rgba(196, 196, 196, 200);
+}</string>
+         </property>
+         <property name="text">
+          <string>Правила игры</string>
+         </property>
+         <property name="icon">
+          <iconset resource="res-rc.qrc">
+           <normaloff>:/icons/icons/rule_w.svg</normaloff>:/icons/icons/rule_w.svg</iconset>
+         </property>
+         <property name="iconSize">
+          <size>
+           <width>16</width>
+           <height>16</height>
+          </size>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </item>
+    <item>
+     <widget class="QFrame" name="ship_2_info_frame">
+      <property name="minimumSize">
+       <size>
+        <width>375</width>
+        <height>0</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>375</width>
+        <height>16777215</height>
+       </size>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: rgba(255, 255, 255, 30);
+border-image: qlineargradient(spread:pad, x1:1, y1:1, x2:0, y2:0, stop:0 rgba(81, 0, 135, 255), stop:0.427447 rgba(41, 61, 132, 235), stop:1 rgba(155, 79, 165, 255));
+border: 1px solid rgba(255, 255, 255, 0);
+border-radius: 7px</string>
+      </property>
+      <layout class="QVBoxLayout" name="verticalLayout_2">
+       <property name="spacing">
+        <number>0</number>
+       </property>
+       <property name="leftMargin">
+        <number>12</number>
+       </property>
+       <property name="topMargin">
+        <number>12</number>
+       </property>
+       <property name="rightMargin">
+        <number>12</number>
+       </property>
+       <property name="bottomMargin">
+        <number>12</number>
+       </property>
+       <item>
+        <widget class="QLabel" name="label_17">
+         <property name="styleSheet">
+          <string notr="true">color: rgb(0, 0, 170);
+font-weight: bold;
+font-size: 20pt;
+background-color: none;
+border: none;</string>
+         </property>
+         <property name="text">
+          <string>КОРАБЛЬ 2</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QProgressBar" name="progressBar_2">
+         <property name="value">
+          <number>24</number>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <spacer name="verticalSpacer_5">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeType">
+          <enum>QSizePolicy::Fixed</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>20</width>
+           <height>40</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item>
+        <layout class="QHBoxLayout" name="horizontalLayout_6">
+         <property name="spacing">
+          <number>0</number>
+         </property>
+         <item>
+          <widget class="QLabel" name="label_18">
+           <property name="maximumSize">
+            <size>
+             <width>24</width>
+             <height>16777215</height>
+            </size>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">background-color: none;
+border: none;
+padding-top: 10px;</string>
+           </property>
+           <property name="text">
+            <string/>
+           </property>
+           <property name="pixmap">
+            <pixmap resource="res-rc.qrc">:/icons/icons/flag_w.svg</pixmap>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLabel" name="label_19">
+           <property name="styleSheet">
+            <string notr="true">color: rgb(255, 255, 255);
+font-size: 15pt;
+background-color: none;
+border: none;
+font-weight: bold;
+padding-top: 10px;</string>
+           </property>
+           <property name="text">
+            <string>Название корабля:</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLabel" name="label_20">
+           <property name="styleSheet">
+            <string notr="true">color: rgb(255, 255, 255);
+font-size: 15pt;
+background-color: none;
+border: none;
+padding-top: 10px;</string>
+           </property>
+           <property name="text">
+            <string>name_2</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <layout class="QHBoxLayout" name="horizontalLayout_7">
+         <property name="spacing">
+          <number>0</number>
+         </property>
+         <item>
+          <widget class="QLabel" name="label_21">
+           <property name="maximumSize">
+            <size>
+             <width>24</width>
+             <height>16777215</height>
+            </size>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">background-color: none;
+border: none;
+padding-top: 10px;</string>
+           </property>
+           <property name="text">
+            <string/>
+           </property>
+           <property name="pixmap">
+            <pixmap resource="res-rc.qrc">:/icons/icons/sailing_w.svg</pixmap>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLabel" name="label_22">
+           <property name="styleSheet">
+            <string notr="true">color: rgb(255, 255, 255);
+font-size: 15pt;
+background-color: none;
+border: none;
+font-weight: bold;
+padding-top: 10px;</string>
+           </property>
+           <property name="text">
+            <string>Тип корабля:</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLabel" name="label_23">
+           <property name="styleSheet">
+            <string notr="true">color: rgb(255, 255, 255);
+font-size: 15pt;
+background-color: none;
+border: none;
+padding-top: 10px;</string>
+           </property>
+           <property name="text">
+            <string>shipType_2</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <layout class="QHBoxLayout" name="horizontalLayout_8">
+         <property name="spacing">
+          <number>0</number>
+         </property>
+         <item>
+          <widget class="QLabel" name="label_24">
+           <property name="maximumSize">
+            <size>
+             <width>24</width>
+             <height>16777215</height>
+            </size>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">background-color: none;
+border: none;
+padding-top: 10px;</string>
+           </property>
+           <property name="text">
+            <string/>
+           </property>
+           <property name="pixmap">
+            <pixmap resource="res-rc.qrc">:/icons/icons/favorite_w.svg</pixmap>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLabel" name="label_25">
+           <property name="styleSheet">
+            <string notr="true">color: rgb(255, 255, 255);
+font-size: 15pt;
+background-color: none;
+border: none;
+font-weight: bold;
+padding-top: 10px;</string>
+           </property>
+           <property name="text">
+            <string>ХП корабля:</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLabel" name="label_26">
+           <property name="styleSheet">
+            <string notr="true">color: rgb(255, 255, 255);
+font-size: 15pt;
+background-color: none;
+border: none;
+padding-top: 10px;</string>
+           </property>
+           <property name="text">
+            <string>hp_2</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <layout class="QHBoxLayout" name="horizontalLayout_9">
+         <property name="spacing">
+          <number>0</number>
+         </property>
+         <item>
+          <widget class="QLabel" name="label_27">
+           <property name="maximumSize">
+            <size>
+             <width>24</width>
+             <height>16777215</height>
+            </size>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">background-color: none;
+border: none;
+padding-top: 10px;</string>
+           </property>
+           <property name="text">
+            <string/>
+           </property>
+           <property name="pixmap">
+            <pixmap resource="res-rc.qrc">:/icons/icons/local_police_w.svg</pixmap>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLabel" name="label_28">
+           <property name="styleSheet">
+            <string notr="true">color: rgb(255, 255, 255);
+font-size: 15pt;
+background-color: none;
+border: none;
+font-weight: bold;
+padding-top: 10px;</string>
+           </property>
+           <property name="text">
+            <string>Урон корабля:</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLabel" name="label_29">
+           <property name="styleSheet">
+            <string notr="true">color: rgb(255, 255, 255);
+font-size: 15pt;
+background-color: none;
+border: none;
+padding-top: 10px;</string>
+           </property>
+           <property name="text">
+            <string>damage_2</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <layout class="QHBoxLayout" name="horizontalLayout_10">
+         <property name="spacing">
+          <number>0</number>
+         </property>
+         <item>
+          <widget class="QLabel" name="label_30">
+           <property name="maximumSize">
+            <size>
+             <width>24</width>
+             <height>16777215</height>
+            </size>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">background-color: none;
+border: none;
+padding-top: 10px;</string>
+           </property>
+           <property name="text">
+            <string/>
+           </property>
+           <property name="pixmap">
+            <pixmap resource="res-rc.qrc">:/icons/icons/keyboard_double_arrow_right_w.svg</pixmap>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLabel" name="label_31">
+           <property name="styleSheet">
+            <string notr="true">color: rgb(255, 255, 255);
+font-size: 15pt;
+background-color: none;
+border: none;
+font-weight: bold;
+padding-top: 10px;</string>
+           </property>
+           <property name="text">
+            <string>Скорость корабля:</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLabel" name="label_32">
+           <property name="styleSheet">
+            <string notr="true">color: rgb(255, 255, 255);
+font-size: 15pt;
+background-color: none;
+border: none;
+padding-top: 10px;</string>
+           </property>
+           <property name="text">
+            <string>speed_2</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <spacer name="verticalSpacer_6">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeType">
+          <enum>QSizePolicy::Fixed</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>20</width>
+           <height>40</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item alignment="Qt::AlignHCenter">
+        <widget class="QPushButton" name="pushButton_2">
+         <property name="font">
+          <font>
+           <family>Noto Sans SC</family>
+           <pointsize>15</pointsize>
+           <weight>75</weight>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QPushButton {
+color: white;
+background-color: rgba(0, 0, 170, 100);
+border: 1px solid rgba(0, 0, 170, 200);
+border-radius: 7px;
+width: 360px;
+height: 50px;
+}
+QPushButton:hover {
+background-color: rgba(0, 0, 170, 150);
+}
+QPushButton:pressed {
+background-color: rgba(0, 0, 170, 200);
+}</string>
+         </property>
+         <property name="text">
+          <string>Ввести данные корабля 2</string>
+         </property>
+         <property name="icon">
+          <iconset resource="res-rc.qrc">
+           <normaloff>:/icons/icons/edit_note_w.svg</normaloff>:/icons/icons/edit_note_w.svg</iconset>
+         </property>
+         <property name="iconSize">
+          <size>
+           <width>24</width>
+           <height>24</height>
+          </size>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <spacer name="verticalSpacer">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>20</width>
+           <height>40</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+      </layout>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+ </widget>
+ <resources>
+  <include location="res-rc.qrc"/>
+ </resources>
+ <connections/>
+ <buttongroups>
+  <buttongroup name="buttonGroup_location"/>
+  <buttongroup name="buttonGroup_weather"/>
+  <buttongroup name="buttonGroup_time_of_day"/>
+ </buttongroups>
+</ui>
