@@ -1,9 +1,15 @@
 <RCC>
   <qresource prefix="backgrond">
+    <file>game_images/background_4.jpg</file>
+    <file>game_images/background_3.png</file>
     <file>game_images/mk_2.jpg</file>
     <file>game_images/mk.jpg</file>
   </qresource>
   <qresource prefix="icons">
+    <file>icons/close_b.svg</file>
+    <file>icons/close_w.svg</file>
+    <file>icons/save_b.svg</file>
+    <file>icons/save_w.svg</file>
     <file>icons/edit_note_b.svg</file>
     <file>icons/edit_note_w.svg</file>
     <file>icons/favorite_b.svg</file>

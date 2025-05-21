@@ -30,7 +30,7 @@ class BattleShip:
         self.name = name
         self.shipType = SHIP_TYPES[ship_type]
         self.hp = hp * 100  # Геймпплейное увеличение очков прочности х100
-        self.damage = damage * 15 if self.shipType == 'Противокорабельная лодка' else damage * 10  # Модификатор урона для типа коробля "Противокорабельная лодка"
+        self.damage = damage * 15 if self.shipType == 'Противокорабельная лодка' else damage * 10  # Модификатор урона для типа корабля "Противокорабельная лодка"
         self.speed = float(speed * 2) if self.shipType == 'Торпедный катер' else float(speed)
         self._isAlive = True
         self._damageReceived = 0  # Начальное значение полученного урона
@@ -59,7 +59,7 @@ class BattleShip:
             print(f"Корабль '{self.name}' уворачивается")
             self._damageReceived = 0
         else:
-            self._damageReceived = round(damage / 2) if self.shipType == 'Броненосец' else damage  # Модификатор получения урона для типа коробля "Броненосец"
+            self._damageReceived = round(damage / 2) if self.shipType == 'Броненосец' else damage  # Модификатор получения урона для типа корабля "Броненосец"
             self.hp -= self._damageReceived
             self._isAlive = True if self.hp > 0 else False
 
@@ -69,13 +69,13 @@ class BattleShip:
 
 def getRules():
     print(f'Правила игры:\n'
-          f'Игроку необходимо указать название, тип и ТТХ 2-х короблей, которые будут участвовать в бою.\n'
+          f'Игроку необходимо указать название, тип и ТТХ 2-х кораблей, которые будут участвовать в бою.\n'
           f'Суммарно для всех ТТХ (хп, урон, скорость) доступно {TOTAL_POINTS} очков (значение не может быть = 0)\n'
           f'Очки прочности вычисляются по формуле: HP = hp.points x 100\n'
           f'Очки урона вычисляются по формуле: DMG = dmg.points x 10\n'
           f'Очки скорости вычисляются по формуле: SPEED = speed.points\n'
           f'Урон наносится DMG +/-10%\n'
-          f'Очки скорости влияют на вероятность коробля увернуться от получения урона: шанс_уворота = SPEED х 0,05\n'
+          f'Очки скорости влияют на вероятность корабля увернуться от получения урона: шанс_уворота = SPEED х 0,05\n'
           f'Каждый тип корабля обладает своими уникальными способностями:\n'
           f'Броненосец - получает в два раза меньше урона\n'
           f'Торпедный катер - имеет удвоенную скорость (SPEED х 2)\n'
@@ -94,7 +94,7 @@ def inputDigit():
 
 def shipPropertyInput():
     name = input('Название корабля:\n')
-    print(f'Выберите тип коробля от 1 до {len(SHIP_TYPES)}, где:')
+    print(f'Выберите тип корабля от 1 до {len(SHIP_TYPES)}, где:')
     print(*[f'{key} - {value}' for key, value in SHIP_TYPES.items()], sep='\n')
     ship_type = inputDigit()
     while ship_type not in SHIP_TYPES:
@@ -185,7 +185,7 @@ def battle(battle_ship_1, battle_ship_2):
                   f"Корабль '{ship_1.name}' побеждает в бою!")
             return False
         print(f"Корабль '{ship_2.name}' получает {ship_2.damageReceived} урона\n"
-              f"Оставшиеся очки прочности коробля '{ship_2.name}' = {ship_2.hp}")
+              f"Оставшиеся очки прочности корабля '{ship_2.name}' = {ship_2.hp}")
         print(SEPARATOR)
         sleep(SLEEP_TIME * 2)
         return True
